@@ -15,6 +15,10 @@ class FileSystem
      */
     private $filesystem;
 
+    public function __construct()
+    {
+        $this->filesystem = new FileSystemHelper();
+    }
 
     /**
      * Create a Temp File with the given content and return the path to that file

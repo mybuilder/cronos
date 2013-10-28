@@ -2,6 +2,8 @@
 
 namespace MyBuilder\Cronos\Updater;
 
+use MyBuilder\Cronos\Formatter\Cron;
+
 class CronProcessUpdater
 {
     const CRONTAB_COMMAND = 'crontab';
@@ -20,13 +22,13 @@ class CronProcessUpdater
      */
     private $crontabCommand = self::CRONTAB_COMMAND;
 
-    public function __construct($processRunner, $fileSystem)
+    public function __construct(ProcessRunner $processRunner, FileSystem $fileSystem)
     {
         $this->processRunner = $processRunner;
         $this->fileSystem = $fileSystem;
     }
 
-    public function updateWith($cron)
+    public function updateWith(Cron $cron)
     {
         $filePath = $this->fileSystem->createTempFile(self::TEMP_FILE_PREFIX, $cron->format());
         $isWritten = $this->processRunner->run($this->crontabCommand . ' ' . $filePath);
