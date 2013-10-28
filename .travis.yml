@@ -5,8 +5,14 @@ php:
     - 5.4
     - 5.5
 
+env:
+  - SYMFONY_VERSION="2.2.*"
+  - SYMFONY_VERSION="2.3.*"
+
 before_script:
     - curl -s http://getcomposer.org/installer | php
+    - php composer.phar require symfony/process:${SYMFONY_VERSION}
+    - php composer.phar require symfony/filesystem:${SYMFONY_VERSION}
     - php composer.phar install --dev
 
 script: bin/phpunit

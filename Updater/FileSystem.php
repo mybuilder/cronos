@@ -33,7 +33,11 @@ class FileSystem
     public function createTempFile($prefix, $content)
     {
         $filePath = $this->createTempName($prefix);
-        $this->filesystem->dumpFile($filePath, $content);
+        if (method_exists($this->filesystem, 'dumpFile')) {
+            $this->filesystem->dumpFile($filePath, $content);
+        } else {
+            file_put_contents($filePath, $content);
+        }
 
         return $filePath;
     }
