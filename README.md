@@ -5,15 +5,19 @@ Configure Cron task through PHP.
 
 ### Usage
 
+#### Build Cron
 ```php
-$cron = new MyBuilder\Cronos\Cron;
+<?php
+
+require 'vendor/autoload.php';
+
+$cron = new MyBuilder\Cronos\Formatter\Cron;
 $cron
-    ->openHeader()
+    ->beginHeader()
         ->setPath('path')
         ->setHome('home')
         ->setMailto('test@example.com')
         ->setShell('shell')
-        ->setLogName('logName')
         ->setContentType('text')
         ->setContentTransferEncoding('utf8')
     ->end()
@@ -28,7 +32,7 @@ $cron
         ->setStandardErrorFile('error')
     ->end();
 
-echo $cron;
+echo $cron->format();
 ```
 
 That will print
@@ -43,6 +47,23 @@ That will print
     #Comment
     1    2    3    4    5    /bin/bash command --env=dev > log 2> error
 
+#### Update Cron
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use MyBuilder\Cronos\Formatter\Cron;
+use MyBuilder\Cronos\Updater\SymfonyFileSystem;
+use MyBuilder\Cronos\Updater\SymfonyProcessRunner;
+
+$cron = new Cron;
+// $cron configuration...
+
+$cronUpdater = new CronProcessUpdater(new SymfonyProcessRunner, new SymfonyFileSystem);
+$cronUpdater->updateWith($cron);
+```
 
 ### Troubleshooting
 
