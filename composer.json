@@ -29,9 +29,8 @@
         "symfony/filesystem": "~2.4"
     },
     "autoload": {
-        "psr-0": { "MyBuilder\\Cronos": "" }
+        "psr-4": { "MyBuilder\\Cronos\\": "src" }
     },
-    "target-dir": "MyBuilder/Cronos",
     "config": {
         "bin-dir": "bin"
     }
