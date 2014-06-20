@@ -1,9 +1,6 @@
 <?php
 
-namespace MyBuilder\Cronos\Tests\Formatter;
-
-use MyBuilder\Cronos\Updater\SymfonyFileSystem;
-use MyBuilder\Cronos\Updater\StandardFileSystem;
+namespace MyBuilder\Cronos\Updater;
 
 class FileSystemTest extends \PHPUnit_Framework_TestCase
 {

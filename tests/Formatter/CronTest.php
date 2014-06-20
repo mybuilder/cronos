@@ -1,8 +1,6 @@
 <?php
 
-namespace MyBuilder\Cronos\Tests\Formatter;
-
-use MyBuilder\Cronos\Formatter\Cron;
+namespace MyBuilder\Cronos\Formatter;
 
 class CronTest extends \PHPUnit_Framework_TestCase
 {

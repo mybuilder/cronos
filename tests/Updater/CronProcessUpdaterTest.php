@@ -1,8 +1,7 @@
 <?php
 
-namespace MyBuilder\Cronos\Tests\Formatter;
+namespace MyBuilder\Cronos\Formatter;
 
-use MyBuilder\Cronos\Formatter\Cron;
 use MyBuilder\Cronos\Updater\CronProcessUpdater;
 use Mockery as m;
 
