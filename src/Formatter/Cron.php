@@ -2,19 +2,15 @@
 
 namespace MyBuilder\Cronos\Formatter;
 
-/**
- * Cron file
- *
- * This class is responsible for building and outputing the Cron file
- */
 class Cron
 {
     /**
      * @var Header
      */
     private $header;
+
     /**
-     * @var Line[]
+     * @var mixed[]
      */
     private $lines = array();
 
@@ -24,28 +20,36 @@ class Cron
     }
 
     /**
-     * Begin configuring the header
-     *
      * @return Header
      */
-    public function beginHeader()
+    public function header()
     {
         return $this->header;
     }
 
     /**
-     * Add a new line to the cron
-     *
      * @param string $command
      *
-     * @return Line
+     * @return Job
      */
-    public function newLine($command)
+    public function job($command)
     {
-        $line = new Line($command, $this);
+        $line = new Job($command, $this);
         $this->lines[] = $line;
 
         return $line;
+    }
+
+    /**
+     * @param string $comment
+     *
+     * @return Cron
+     */
+    public function comment($comment)
+    {
+        $this->lines[] = new Comment($comment);
+
+        return $this;
     }
 
     /**
@@ -57,8 +61,6 @@ class Cron
     }
 
     /**
-     * Convert this to a format suitable for cron
-     *
      * @return string
      */
     public function format()

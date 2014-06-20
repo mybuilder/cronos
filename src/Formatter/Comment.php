@@ -2,9 +2,6 @@
 
 namespace MyBuilder\Cronos\Formatter;
 
-/**
- * Formats the comment
- */
 class Comment
 {
     /**
@@ -13,34 +10,23 @@ class Comment
     private $comment;
 
     /**
-     * Add a comment
-     *
      * @param string $comment
      */
-    public function addComment($comment)
+    public function __construct($comment)
     {
-        $this->comment = $this->removeBreaks($comment);
+        $this->comment = $comment;
     }
 
     /**
-     * Remove line breaks
-     *
-     * @param string $text
-     *
-     * @return string
-     */
-    private function removeBreaks($text)
-    {
-        return str_replace(array("\r", "\r\n", "\n", PHP_EOL), '', $text);
-    }
-
-    /**
-     * Format the given comment
-     *
      * @return string
      */
     public function format()
     {
-        return ($this->comment) ? PHP_EOL . '#' . $this->comment . PHP_EOL : '';
+        return PHP_EOL . '#' . $this->removeLineBreaks($this->comment);
+    }
+
+    private function removeLineBreaks($text)
+    {
+        return str_replace(array("\r", "\r\n", "\n", PHP_EOL), '', $text);
     }
 }

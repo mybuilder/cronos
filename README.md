@@ -13,7 +13,7 @@ require 'vendor/autoload.php';
 
 $cron = new MyBuilder\Cronos\Formatter\Cron;
 $cron
-    ->beginHeader()
+    ->header()
         ->setPath('path')
         ->setHome('home')
         ->setMailto('test@example.com')
@@ -21,8 +21,8 @@ $cron
         ->setContentType('text')
         ->setContentTransferEncoding('utf8')
     ->end()
-    ->newLine('/bin/bash command --env=dev')
-        ->addComment('Comment')
+    ->comment('Comment')
+    ->job('/bin/bash command --env=dev')
         ->setMinute(1)
         ->setHour(2)
         ->setDayOfMonth(3)
