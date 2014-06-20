@@ -1,11 +1,12 @@
-Cronos [![Build Status](https://secure.travis-ci.org/mybuilder/cronos.png?branch=master)](http://travis-ci.org/mybuilder/cronos)
-======
+# Cronos
+
+[![Build Status](https://secure.travis-ci.org/mybuilder/cronos.svg?branch=master)](http://travis-ci.org/mybuilder/cronos)
 
 Configure Cron task through PHP.
 
-### Usage
+## Usage
 
-#### Build Cron
+### Build Cron
 ```php
 <?php
 
@@ -47,7 +48,7 @@ That will print
     #Comment
     1    2    3    4    5    /bin/bash command --env=dev > log 2> error
 
-#### Update Cron
+### Update Cron
 
 ```php
 <?php
@@ -65,7 +66,7 @@ $cronUpdater = new CronProcessUpdater(new SymfonyProcessRunner, new SymfonyFileS
 $cronUpdater->updateWith($cron);
 ```
 
-### Troubleshooting
+## Troubleshooting
 
 * When a cron line is executed it is executed with the user that owns the crontab, but it will not execute any of the users default shell files so all paths etc need to be specified in the command called from the cron line.
 * Your crontab will not be executed if you do not have useable shell in /etc/passwd
