@@ -48,7 +48,7 @@ That will print
     #Comment
     1    2    3    4    5    /bin/bash command --env=dev > log 2> error
 
-### Update Cron
+### Updating Cron
 
 ```php
 <?php
@@ -56,14 +56,13 @@ That will print
 require 'vendor/autoload.php';
 
 use MyBuilder\Cronos\Formatter\Cron;
-use MyBuilder\Cronos\Updater\SymfonyFileSystem;
-use MyBuilder\Cronos\Updater\SymfonyProcessRunner;
+use MyBuilder\Cronos\Updater\CronUpdater;
 
 $cron = new Cron;
 // $cron configuration...
 
-$cronUpdater = new CronProcessUpdater(new SymfonyProcessRunner, new SymfonyFileSystem);
-$cronUpdater->updateWith($cron);
+$cronUpdater = CronUpdater::createDefault();
+$cronUpdater->replaceWith($cron);
 ```
 
 ## Troubleshooting

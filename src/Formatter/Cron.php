@@ -14,16 +14,13 @@ class Cron
      */
     private $lines = array();
 
-    public function __construct()
-    {
-        $this->header = new Header($this);
-    }
-
     /**
      * @return Header
      */
     public function header()
     {
+        $this->header = new Header($this);
+
         return $this->header;
     }
 
@@ -70,6 +67,11 @@ class Cron
             $lines .= $line->format() . PHP_EOL;
         }
 
-        return $this->header->format() . $lines;
+        return (($this->hasHeader()) ? $this->header->format() : '') . $lines;
+    }
+
+    public function hasHeader()
+    {
+        return $this->header !== null;
     }
 }
