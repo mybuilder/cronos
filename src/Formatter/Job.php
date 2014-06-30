@@ -2,57 +2,38 @@
 
 namespace MyBuilder\Cronos\Formatter;
 
-/**
- * Responsible for representing a line within the cron
- */
-class Line
+class Job
 {
     /**
-     * @var null|Cron
+     * @var Cron
      */
     private $cron;
-    /**
-     * @var Comment
-     */
-    private $comment;
+
     /**
      * @var Time
      */
     private $time;
+
     /**
      * @var string
      */
     private $command;
+
     /**
      * @var Output
      */
     private $output;
 
     /**
-     * @param string$command
-     * @param null|Cron $cron
+     * @param string $command
+     * @param Cron $cron
      */
-    public function __construct($command, $cron = null)
+    public function __construct($command, $cron)
     {
         $this->cron = $cron;
-        $this->comment = new Comment;
         $this->time = new Time;
         $this->command = $command;
         $this->output = new Output;
-    }
-
-    /**
-     * Add a comment line to be displayed before this command line
-     *
-     * @param string $comment
-     *
-     * @return $this
-     */
-    public function addComment($comment)
-    {
-        $this->comment->addComment($comment);
-
-        return $this;
     }
 
     /**
@@ -185,9 +166,9 @@ class Line
     public function format()
     {
         return
-            $this->comment->format() .
             $this->time->format() .
             $this->command .
-            $this->output->format();
+            $this->output->format() .
+            PHP_EOL;
     }
 }

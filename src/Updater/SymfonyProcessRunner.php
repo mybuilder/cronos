@@ -14,6 +14,10 @@ class SymfonyProcessRunner implements ProcessRunner
         $process = new Process($command);
         $process->run();
 
-        return $process->isSuccessful();
+        if (!$process->isSuccessful()) {
+            throw new \RuntimeException($process->getErrorOutput());
+        }
+
+        return $process->getOutput();
     }
 }

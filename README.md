@@ -1,11 +1,12 @@
-Cronos [![Build Status](https://secure.travis-ci.org/mybuilder/cronos.png?branch=master)](http://travis-ci.org/mybuilder/cronos)
-======
+# Cronos
+
+[![Build Status](https://secure.travis-ci.org/mybuilder/cronos.svg?branch=master)](http://travis-ci.org/mybuilder/cronos)
 
 Configure Cron task through PHP.
 
-### Usage
+## Usage
 
-#### Build Cron
+### Build Cron
 ```php
 <?php
 
@@ -13,7 +14,7 @@ require 'vendor/autoload.php';
 
 $cron = new MyBuilder\Cronos\Formatter\Cron;
 $cron
-    ->beginHeader()
+    ->header()
         ->setPath('path')
         ->setHome('home')
         ->setMailto('test@example.com')
@@ -21,8 +22,8 @@ $cron
         ->setContentType('text')
         ->setContentTransferEncoding('utf8')
     ->end()
-    ->newLine('/bin/bash command --env=dev')
-        ->addComment('Comment')
+    ->comment('Comment')
+    ->job('/bin/bash command --env=dev')
         ->setMinute(1)
         ->setHour(2)
         ->setDayOfMonth(3)
@@ -47,7 +48,7 @@ That will print
     #Comment
     1    2    3    4    5    /bin/bash command --env=dev > log 2> error
 
-#### Update Cron
+### Updating Cron
 
 ```php
 <?php
@@ -55,17 +56,16 @@ That will print
 require 'vendor/autoload.php';
 
 use MyBuilder\Cronos\Formatter\Cron;
-use MyBuilder\Cronos\Updater\SymfonyFileSystem;
-use MyBuilder\Cronos\Updater\SymfonyProcessRunner;
+use MyBuilder\Cronos\Updater\CronUpdater;
 
 $cron = new Cron;
 // $cron configuration...
 
-$cronUpdater = new CronProcessUpdater(new SymfonyProcessRunner, new SymfonyFileSystem);
-$cronUpdater->updateWith($cron);
+$cronUpdater = CronUpdater::createDefault();
+$cronUpdater->replaceWith($cron);
 ```
 
-### Troubleshooting
+## Troubleshooting
 
 * When a cron line is executed it is executed with the user that owns the crontab, but it will not execute any of the users default shell files so all paths etc need to be specified in the command called from the cron line.
 * Your crontab will not be executed if you do not have useable shell in /etc/passwd

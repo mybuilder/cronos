@@ -15,8 +15,12 @@
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>Tests</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
+
+    <listeners>
+        <listener class="\Mockery\Adapter\Phpunit\TestListener" />
+    </listeners>
 
 </phpunit>

@@ -1,8 +1,6 @@
 <?php
 
-namespace MyBuilder\Cronos\Tests\Formatter;
-
-use MyBuilder\Cronos\Formatter\Cron;
+namespace MyBuilder\Cronos\Formatter;
 
 class CronTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,7 +20,7 @@ class CronTest extends \PHPUnit_Framework_TestCase
     public function shouldBuildConfiguration()
     {
         $this->cron
-            ->beginHeader()
+            ->header()
                 ->setPath('path')
                 ->setHome('home')
                 ->setMailto('test@example.com')
@@ -30,8 +28,8 @@ class CronTest extends \PHPUnit_Framework_TestCase
                 ->setContentType('text')
                 ->setContentTransferEncoding('utf8')
             ->end()
-            ->newLine('/bin/bash command --env=dev')
-                ->addComment('This is a command!')
+            ->comment('This is a command!')
+            ->job('/bin/bash command --env=dev')
                 ->setMinute(1)
                 ->setHour(2)
                 ->setDayOfMonth(3)
@@ -40,8 +38,8 @@ class CronTest extends \PHPUnit_Framework_TestCase
                 ->setStandardOutFile('log')
                 ->setStandardErrorFile('error')
             ->end()
-            ->newLine('/bin/php command2 --env=prod')
-                ->addComment('This is another command!')
+            ->comment('This is another command!')
+            ->job('/bin/php command2 --env=prod')
                 ->setMinute('/5')
                 ->setDayOfWeek('sun')
                 ->suppressOutput()
@@ -60,7 +58,6 @@ CONTENT_TRANSFER_ENCODING=utf8
 
 #This is another command!
 */5  *    *    *    sun  /bin/php command2 --env=prod > /dev/null 2> /dev/null
-
 EXP;
         
         $this->assertEquals($expected, $this->cron->format());
