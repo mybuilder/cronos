@@ -67,7 +67,7 @@ class Cron
             $lines .= $line->format() . PHP_EOL;
         }
 
-        return (($this->hasHeader()) ? $this->header->format() : '') . $lines;
+        return (($this->hasHeader()) ? $this->header->format() . PHP_EOL : '') . trim($lines);
     }
 
     public function hasHeader()

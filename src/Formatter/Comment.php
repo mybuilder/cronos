@@ -22,7 +22,7 @@ class Comment
      */
     public function format()
     {
-        return PHP_EOL . '#' . $this->removeLineBreaks($this->comment);
+        return '#' . $this->removeLineBreaks($this->comment);
     }
 
     private function removeLineBreaks($text)

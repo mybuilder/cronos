@@ -168,6 +168,7 @@ class Job
         return
             $this->time->format() .
             $this->command .
-            $this->output->format();
+            $this->output->format() .
+            PHP_EOL;
     }
 }
