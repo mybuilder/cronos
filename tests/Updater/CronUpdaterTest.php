@@ -32,9 +32,6 @@ class CronUpdaterTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldAppendKeyIfNotExist()
     {
-        $cron = new Cron;
-        $cron->comment('new content');
-
         $this->manipulatorStub->contents = <<<CRON
 headers
 # KEY key1
@@ -43,6 +40,9 @@ value 1
 no key
 CRON;
 
+        $cron = new Cron;
+        $cron->header()->setPath('path')->end();
+        $cron->comment('new content');
         $this->updater->updateWith($cron, 'key2');
 
         $expectedCron = <<<CRON
@@ -52,6 +52,8 @@ value 1
 # END
 no key
 # KEY key2
+PATH=path
+
 #new content
 # END
 CRON;
@@ -64,9 +66,6 @@ CRON;
      */
     public function shouldReplaceKeyIfExist()
     {
-        $cron = new Cron;
-        $cron->comment('replace');
-
         $this->manipulatorStub->contents = <<<CRON
 headers
 # KEY key1
@@ -81,6 +80,8 @@ foo
 # END
 CRON;
 
+        $cron = new Cron;
+        $cron->comment('replace');
         $this->updater->updateWith($cron, 'key2');
 
         $expectedCron = <<<CRON
