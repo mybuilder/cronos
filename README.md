@@ -2,7 +2,9 @@
 
 [![Build Status](https://secure.travis-ci.org/mybuilder/cronos.svg?branch=master)](http://travis-ci.org/mybuilder/cronos)
 
-Configure Cron task through PHP.
+Easily configure cron through PHP.
+
+Use our [cronos-bundle](https://github.com/mybuilder/cronos-bundle) for easy Symfony2 integration.
 
 ## Usage
 
