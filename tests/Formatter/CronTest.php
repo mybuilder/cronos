@@ -4,9 +4,6 @@ namespace MyBuilder\Cronos\Formatter;
 
 class CronTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var Cron
-     */
     private $cron;
 
     protected function setUp()

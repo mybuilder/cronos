@@ -4,7 +4,22 @@
 
 Easily configure cron through PHP.
 
-Use our [cronos-bundle](https://github.com/mybuilder/cronos-bundle) for easy Symfony2 integration.
+If you use Symfony 2, you could use our [cool bundle](https://github.com/mybuilder/cronos-bundle) in order to configure your app jobs through fancy annotations!
+
+## Setup and Configuration
+Add the following to your `composer.json` file
+```json
+{
+    "require": {
+        "mybuilder/cronos": "~1.0"
+    }
+}
+```
+
+Update the vendor libraries
+
+    curl -s http://getcomposer.org/installer | php
+    php composer.phar install
 
 ## Usage
 

@@ -2,12 +2,8 @@
 
 namespace MyBuilder\Cronos\Updater;
 
-use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem as FileSystemHelper;
 
-/**
- * Responsible for abstracting the file system functions
- */
 class SymfonyFileSystem implements FileSystem
 {
     /**
@@ -23,7 +19,7 @@ class SymfonyFileSystem implements FileSystem
     /**
      * {@inheritdoc}
      *
-     * @throws IOException If the file cannot be written to.
+     * @throws \Symfony\Component\Filesystem\Exception\IOException If the file cannot be written to.
      */
     public function createTempFile($prefix, $content)
     {
@@ -50,7 +46,7 @@ class SymfonyFileSystem implements FileSystem
     /**
      * {@inheritdoc}
      *
-     * @throws IOException When removal fails
+     * @throws \Symfony\Component\Filesystem\Exception\IOException When removal fails
      */
     public function removeFile($filePath)
     {
