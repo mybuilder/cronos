@@ -2,53 +2,52 @@
 
 namespace MyBuilder\Cronos\Formatter;
 
-/**
- * Cron allows you to specify certain parameters in the header.
- *
- * This class is responsible for
- */
 class Header
 {
     /**
-     * @var null|Cron
+     * @var Cron
      */
     private $cron;
+
     /**
      * @var string
      */
     private $path;
+
     /**
      * @var string
      */
     private $mailTo;
+
     /**
      * @var string
      */
     private $home;
+
     /**
      * @var string
      */
     private $shell;
+
     /**
      * @var string
      */
     private $contentType;
+
     /**
      * @var string
      */
     private $encoding;
 
     /**
-     * @param null|Cron $cron object to return when end is called
+     * @param Cron $cron
      */
-    public function __construct($cron = null)
+    public function __construct(Cron $cron)
     {
         $this->cron = $cron;
     }
 
     /**
-     * Set the path for all commands in the crontab
-     *
      * Works just like the shell PATH, but it does not inherit from your environment.
      *
      * @param string $path
@@ -63,8 +62,6 @@ class Header
     }
 
     /**
-     * Set the path to the crontab's owner home directory.
-     *
      * @param string $home
      *
      * @return $this
@@ -77,8 +74,6 @@ class Header
     }
 
     /**
-     * Set the email address for all cron output to go to.
-     *
      * @param string $email
      *
      * @return $this
@@ -91,6 +86,13 @@ class Header
         $this->mailTo = $email;
 
         return $this;
+    }
+
+    private function assertValidEmail($email)
+    {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidEmail($email);
+        }
     }
 
     /**
@@ -138,8 +140,6 @@ class Header
     }
 
     /**
-     * Convert the header to a form suitable for the top of the crontab
-     *
      * @return string
      */
     public function format()
@@ -167,25 +167,16 @@ class Header
         return $headers;
     }
 
+    private function createHeader($name, $value)
+    {
+        return $name . '=' . $value . PHP_EOL;
+    }
+
     /**
-     * End configuring the header
-     *
-     * @return null|Cron
+     * @return Cron
      */
     public function end()
     {
         return $this->cron;
-    }
-
-    private function assertValidEmail($email)
-    {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new InvalidEmail();
-        }
-    }
-
-    private function createHeader($name, $value)
-    {
-        return $name . '=' . $value . PHP_EOL;
     }
 }

@@ -2,32 +2,26 @@
 
 namespace MyBuilder\Cronos\Formatter;
 
-/**
- * This class is responsible for formatting the output part of the config
- *
- * That then controls where the output from the executed command goes.
- */
 class Output
 {
     const NO_FILE = '/dev/null';
+
     /**
-     * Should the output be suppressed
-     *
      * @var boolean
      */
     private $noOutput = false;
+
     /**
      * @var string
      */
     private $stdOutFile;
+
     /**
      * @var string
      */
     private $stdErrFile;
 
     /**
-     * Set the output to be suppressed
-     *
      * @return $this
      */
     public function suppressOutput()
@@ -38,8 +32,6 @@ class Output
     }
 
     /**
-     * Set the location of the Standard Output File
-     *
      * @param string $filePath
      *
      * @return $this
@@ -52,8 +44,6 @@ class Output
     }
 
     /**
-     * Set the location of the Standard Error File
-     *
      * @param string $filePath
      *
      * @return $this
@@ -66,8 +56,6 @@ class Output
     }
 
     /**
-     * Cron suitable output format
-     *
      * @return string
      */
     public function format()

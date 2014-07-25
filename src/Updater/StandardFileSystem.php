@@ -2,9 +2,6 @@
 
 namespace MyBuilder\Cronos\Updater;
 
-/**
- * Responsible for abstracting the file system functions
- */
 class StandardFileSystem implements FileSystem
 {
     /**

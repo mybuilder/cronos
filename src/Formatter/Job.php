@@ -28,7 +28,7 @@ class Job
      * @param string $command
      * @param Cron $cron
      */
-    public function __construct($command, $cron)
+    public function __construct($command, Cron $cron)
     {
         $this->cron = $cron;
         $this->time = new Time;
@@ -149,9 +149,7 @@ class Job
     }
 
     /**
-     * End this line
-     *
-     * @return null|Cron
+     * @return Cron
      */
     public function end()
     {
@@ -159,8 +157,6 @@ class Job
     }
 
     /**
-     * Get the line in a format suitable for cron
-     *
      * @return string
      */
     public function format()

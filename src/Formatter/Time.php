@@ -3,8 +3,6 @@
 namespace MyBuilder\Cronos\Formatter;
 
 /**
- * Responsible for formatting the time portion of the config
- *
  * Rather than using  * /5  for 5 minutes you can simply use /5
  *
  *
@@ -25,35 +23,35 @@ namespace MyBuilder\Cronos\Formatter;
  */
 class Time
 {
-    /**
-     * time format for Cron
-     */
     const FORMAT = '%-4s %-4s %-4s %-4s %-4s ';
     const WILDCARD_TIME = '*';
+
     /**
      * @var string
      */
     private $minute = self::WILDCARD_TIME;
+
     /**
      * @var string
      */
     private $hour = self::WILDCARD_TIME;
+
     /**
      * @var string
      */
     private $dayOfMonth = self::WILDCARD_TIME;
+
     /**
      * @var string
      */
     private $month = self::WILDCARD_TIME;
+
     /**
      * @var string
      */
     private $dayOfWeek = self::WILDCARD_TIME;
 
     /**
-     * Set the minute part of the cron
-     *
      * @param string $value 0-59 or a list or range
      *
      * @return $this
@@ -66,8 +64,6 @@ class Time
     }
 
     /**
-     * Set the hour part of the cron
-     *
      * @param string $value 0-23 or a list or range
      *
      * @return $this
@@ -80,8 +76,6 @@ class Time
     }
 
     /**
-     * Set the day of the month part for cron
-     *
      * @param string $value 0-31 or a list or range
      *
      * @return $this
@@ -94,8 +88,6 @@ class Time
     }
 
     /**
-     * Set the month part of cron
-     *
      * @param string $value 0-12 or a list or range
      *
      * @return $this
@@ -108,8 +100,6 @@ class Time
     }
 
     /**
-     * Set the Day Of Week part of cron
-     *
      * @param string $value 0-7 (0 or 7 is Sun, or use names) or a list or range
      *
      * @return $this
@@ -122,8 +112,6 @@ class Time
     }
 
     /**
-     * Convert to a string
-     *
      * @return string
      */
     public function format()
