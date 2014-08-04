@@ -84,6 +84,7 @@ $cronUpdater->replaceWith($cron);
 
 ## Troubleshooting
 
+* The current user must have a existing crontab file to use the updater, use crontab -e to create one.
 * When a cron line is executed it is executed with the user that owns the crontab, but it will not execute any of the users default shell files so all paths etc need to be specified in the command called from the cron line.
 * Your crontab will not be executed if you do not have useable shell in /etc/passwd
 * If your jobs don't seem to be running check that the cron deamon is running, also check your username is in /etc/cron.allow and not in /etc/cron.deny.
