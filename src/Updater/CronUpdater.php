@@ -59,7 +59,7 @@ class CronUpdater
 
     private function wrapInKey(Cron $cron, $key)
     {
-        return PHP_EOL . $this->beginKey($key) . PHP_EOL . $cron->format() .  PHP_EOL . self::KEY_END;
+        return PHP_EOL . $this->beginKey($key) . PHP_EOL . trim($cron->format()) . PHP_EOL . self::KEY_END;
     }
 
     private function beginKey($key)
@@ -69,6 +69,6 @@ class CronUpdater
 
     private function appendContent(Cron $cron, $key, $content)
     {
-        return $content . $this->wrapInKey($cron, $key);
+        return $content . $this->wrapInKey($cron, $key) . PHP_EOL;
     }
 }

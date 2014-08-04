@@ -55,6 +55,7 @@ CONTENT_TRANSFER_ENCODING=utf8
 
 #This is another command!
 */5  *    *    *    sun  /bin/php command2 --env=prod > /dev/null 2> /dev/null
+
 EXP;
         
         $this->assertEquals($expected, $this->cron->format());

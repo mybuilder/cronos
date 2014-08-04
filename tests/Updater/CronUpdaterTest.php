@@ -24,7 +24,7 @@ class CronUpdaterTest extends \PHPUnit_Framework_TestCase
     {
         $this->updater->replaceWith(new Cron);
 
-        $this->assertEquals('', $this->manipulatorStub->contents);
+        $this->assertEquals("\n", $this->manipulatorStub->contents);
     }
 
     /**
@@ -56,6 +56,7 @@ PATH=path
 
 #new content
 # END
+
 CRON;
 
         $this->assertEquals($expectedCron, $this->manipulatorStub->contents);
@@ -78,6 +79,7 @@ no key
 # KEY key3
 foo
 # END
+
 CRON;
 
         $cron = new Cron;
@@ -96,6 +98,7 @@ no key
 # KEY key3
 foo
 # END
+
 CRON;
 
         $this->assertEquals($expectedCron, $this->manipulatorStub->contents);
