@@ -17,9 +17,19 @@ class Output
     private $stdOutFile;
 
     /**
+     * @var bool
+     */
+    private $stdOutAppend;
+
+    /**
      * @var string
      */
     private $stdErrFile;
+
+    /**
+     * @var bool
+     */
+    private $stdErrAppend;
 
     /**
      * @return $this
@@ -32,25 +42,39 @@ class Output
     }
 
     /**
-     * @param string $filePath
-     *
      * @return $this
      */
-    public function setStandardOutFile($filePath)
+    public function appendOutput()
     {
-        $this->stdOutFile = $filePath;
+        $this->stdErrAppend = true;
+        $this->stdOutAppend = true;
 
         return $this;
     }
 
     /**
      * @param string $filePath
+     * @param bool $append Either append or rewrite log file
      *
      * @return $this
      */
-    public function setStandardErrorFile($filePath)
+    public function setStandardOutFile($filePath, $append = false)
+    {
+        $this->stdOutFile = $filePath;
+        $this->stdOutAppend = $append;
+
+        return $this;
+    }
+
+    /**
+     * @param string $filePath
+     * @param bool $append Either append or rewrite log file
+     * @return $this
+     */
+    public function setStandardErrorFile($filePath, $append = false)
     {
         $this->stdErrFile = $filePath;
+        $this->stdErrAppend = $append;
 
         return $this;
     }
@@ -90,7 +114,9 @@ class Output
      */
     private function redirectStandardOutTo($filePath)
     {
-        return ' > ' . $filePath;
+        $redirectOperator = $this->getRedirectOperator($this->stdOutAppend);
+
+        return sprintf(' %s %s', $redirectOperator, $filePath);
     }
 
     /**
@@ -100,6 +126,20 @@ class Output
      */
     private function redirectStandardErrorTo($filePath)
     {
-        return ' 2> ' . $filePath;
+        $redirectOperator = $this->getRedirectOperator($this->stdErrAppend);
+
+        return sprintf(' 2%s %s', $redirectOperator, $filePath);
     }
+
+    private function getRedirectOperator($append)
+    {
+        $redirectOperator = '>';
+        if ($append) {
+            $redirectOperator = '>>';
+        }
+
+        return $redirectOperator;
+    }
+
+
 }

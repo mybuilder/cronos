@@ -24,7 +24,7 @@ class CronUpdaterTest extends \PHPUnit_Framework_TestCase
     {
         $this->updater->replaceWith(new Cron);
 
-        $this->assertEquals("\n", $this->manipulatorStub->contents);
+        $this->assertEquals(PHP_EOL, $this->manipulatorStub->contents);
     }
 
     /**
