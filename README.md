@@ -47,7 +47,7 @@ $cron
         ->setMonth(4)
         ->setDayOfWeek(5)
         ->setStandardOutFile('log')
-        ->setStandardErrorFile('error')
+        ->appendStandardErrorToFile('error')
     ->end();
 
 echo $cron->format();
@@ -63,7 +63,7 @@ That will print
     CONTENT_TRANSFER_ENCODING=utf8
 
     #Comment
-    1    2    3    4    5    /bin/bash command --env=dev > log 2> error
+    1    2    3    4    5    /bin/bash command --env=dev > log 2>> error
 
 ### Updating Cron
 
