@@ -33,7 +33,7 @@ class CronTest extends \PHPUnit_Framework_TestCase
                 ->setMonth(4)
                 ->setDayOfWeek(5)
                 ->setStandardOutFile('log')
-                ->setStandardErrorFile('error')
+                ->appendStandardErrorToFile('error')
             ->end()
             ->comment('This is another command!')
             ->job('/bin/php command2 --env=prod')
@@ -51,7 +51,7 @@ CONTENT_TYPE=text
 CONTENT_TRANSFER_ENCODING=utf8
 
 #This is a command!
-1    2    3    4    5    /bin/bash command --env=dev > log 2> error
+1    2    3    4    5    /bin/bash command --env=dev > log 2>> error
 
 #This is another command!
 */5  *    *    *    sun  /bin/php command2 --env=prod > /dev/null 2> /dev/null

@@ -139,11 +139,39 @@ class Job
      *
      * @return $this
      *
+     * @see Output::appendStandardOutToFile
+     */
+    public function appendStandardOutToFile($filePath)
+    {
+        $this->output->appendStandardOutToFile($filePath);
+
+        return $this;
+    }
+
+    /**
+     * @param string $filePath
+     *
+     * @return $this
+     *
      * @see Output::setStandardErrorFile
      */
     public function setStandardErrorFile($filePath)
     {
         $this->output->setStandardErrorFile($filePath);
+
+        return $this;
+    }
+
+    /**
+     * @param string $filePath
+     *
+     * @return $this
+     *
+     * @see Output::appendStandardErrorToFile
+     */
+    public function appendStandardErrorToFile($filePath)
+    {
+        $this->output->appendStandardErrorToFile($filePath);
 
         return $this;
     }
