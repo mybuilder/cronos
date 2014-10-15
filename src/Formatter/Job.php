@@ -122,42 +122,56 @@ class Job
 
     /**
      * @param string $filePath
-     * @param bool $append Either append or rewrite log file
      *
      * @return $this
      *
      * @see Output::setStandardOutFile
      */
-    public function setStandardOutFile($filePath, $append = false)
+    public function setStandardOutFile($filePath)
     {
-        $this->output->setStandardOutFile($filePath, $append);
+        $this->output->setStandardOutFile($filePath);
 
         return $this;
     }
 
     /**
      * @param string $filePath
-     * @param bool $append Either append or rewrite log file
      *
      * @return $this
      *
-     * @see Output::setStandardErrorFile
+     * @see Output::appendStandardOutToFile
      */
-    public function setStandardErrorFile($filePath, $append = false)
+    public function appendStandardOutToFile($filePath)
     {
-        $this->output->setStandardErrorFile($filePath, $append);
+        $this->output->appendStandardOutToFile($filePath);
 
         return $this;
     }
 
     /**
-     * Appends each command execution output to log file.
+     * @param string $filePath
      *
      * @return $this
+     *
+     * @see Output::setStandardErrorFile
      */
-    public function appendOutput()
+    public function setStandardErrorFile($filePath)
     {
-        $this->output->appendOutput();
+        $this->output->setStandardErrorFile($filePath);
+
+        return $this;
+    }
+
+    /**
+     * @param string $filePath
+     *
+     * @return $this
+     *
+     * @see Output::appendStandardErrorToFile
+     */
+    public function appendStandardErrorToFile($filePath)
+    {
+        $this->output->appendStandardErrorToFile($filePath);
 
         return $this;
     }

@@ -33,7 +33,7 @@ class CronTest extends \PHPUnit_Framework_TestCase
                 ->setMonth(4)
                 ->setDayOfWeek(5)
                 ->setStandardOutFile('log')
-                ->setStandardErrorFile('error', $append = true)
+                ->appendStandardErrorToFile('error')
             ->end()
             ->comment('This is another command!')
             ->job('/bin/php command2 --env=prod')
