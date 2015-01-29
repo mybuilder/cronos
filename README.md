@@ -1,6 +1,6 @@
 # Cronos
 
-[![Build Status](https://secure.travis-ci.org/mybuilder/cronos.svg?branch=master)](http://travis-ci.org/mybuilder/cronos)
+[![Build Status](https://secure.travis-ci.org/mybuilder/cronos.svg?branch=master)](http://travis-ci.org/mybuilder/cronos) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d4fa742c-b95d-4416-8dce-7c7276bdc89b/big.png)](https://insight.sensiolabs.com/projects/d4fa742c-b95d-4416-8dce-7c7276bdc89b)
 
 Easily configure cron through PHP.
 
