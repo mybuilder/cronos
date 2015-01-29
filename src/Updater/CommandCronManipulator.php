@@ -2,8 +2,6 @@
 
 namespace MyBuilder\Cronos\Updater;
 
-use Symfony\Component\Process\Process;
-
 class CommandCronManipulator implements CronManipulator
 {
     private $processRunner;

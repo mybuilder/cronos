@@ -13,4 +13,4 @@ interface CronManipulator
      * @return string
      */
     public function getContent();
-} 
+}
