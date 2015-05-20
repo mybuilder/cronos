@@ -90,3 +90,8 @@ $cronUpdater->replaceWith($cron);
 * If your jobs don't seem to be running check that the cron deamon is running, also check your username is in /etc/cron.allow and not in /etc/cron.deny.
 * Environmental substitutions do not work, you can not use things like $PATH, $HOME, or ~/sbin.
 * You can not use % in the command, if you need to use it escape the command in backticks.
+
+
+---
+
+Created by [MyBuilder](http://www.mybuilder.com/) - Check out our [blog](http://tech.mybuilder.com/) for more insight into this and other open-source projects we release.
