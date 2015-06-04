@@ -18,13 +18,13 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/process": ">=2.2,<2.7"
+        "symfony/process": "~2.2"
     },
     "suggest": {
         "symfony/filesystem": "Allows using Symfony Filesystem"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.6.*",
+        "phpunit/phpunit": "4.6",
         "mockery/mockery": "~0.9"
     },
     "autoload": {
