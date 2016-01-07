@@ -5,6 +5,7 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7.0
   - hhvm
 
 env:
@@ -14,6 +15,15 @@ env:
   - SYMFONY_VERSION=2.5.*
   - SYMFONY_VERSION=2.6.*
   - SYMFONY_VERSION=2.7.*
+  - SYMFONY_VERSION=2.8.*
+  - SYMFONY_VERSION=3.0.*
+
+matrix:
+    exclude:
+        - php: 5.3
+          env: SYMFONY_VERSION=3.0.*
+        - php: 5.4
+          env: SYMFONY_VERSION=3.0.*
 
 before_script:
   - composer require symfony/process:${SYMFONY_VERSION}
