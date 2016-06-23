@@ -7,7 +7,7 @@ interface ProcessRunner
     /**
      * @param string $command
      *
-     * @return boolean
+     * @return string
      */
     public function run($command);
 }
