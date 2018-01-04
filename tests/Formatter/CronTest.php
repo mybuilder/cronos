@@ -24,6 +24,7 @@ class CronTest extends \PHPUnit_Framework_TestCase
                 ->setShell('shell')
                 ->setContentType('text')
                 ->setContentTransferEncoding('utf8')
+                ->setTimezone('Europe/Paris')
             ->end()
             ->comment('This is a command!')
             ->job('/bin/bash command --env=dev')
@@ -49,6 +50,7 @@ HOME=home
 SHELL=shell
 CONTENT_TYPE=text
 CONTENT_TRANSFER_ENCODING=utf8
+CRON_TZ=Europe/Paris
 
 #This is a command!
 1    2    3    4    5    /bin/bash command --env=dev > log 2>> error

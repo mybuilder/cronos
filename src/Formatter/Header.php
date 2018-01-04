@@ -40,6 +40,11 @@ class Header
     private $encoding;
 
     /**
+     * @var string
+     */
+    private $timezone;
+
+    /**
      * @param Cron $cron
      */
     public function __construct(Cron $cron)
@@ -140,6 +145,18 @@ class Header
     }
 
     /**
+     * @param $timezone
+     *
+     * @return $this
+     */
+    public function setTimezone($timezone)
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function format()
@@ -162,6 +179,9 @@ class Header
         }
         if ($this->encoding) {
             $headers .= $this->createHeader('CONTENT_TRANSFER_ENCODING', $this->encoding);
+        }
+        if ($this->timezone) {
+            $headers .= $this->createHeader('CRON_TZ', $this->timezone);
         }
 
         return $headers;
