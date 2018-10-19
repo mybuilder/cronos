@@ -7,15 +7,15 @@
     "authors": [
         {
             "name": "Gavin Love",
-            "homepage": "http://www.mybuilder.com"
+            "homepage": "https://www.mybuilder.com"
         },
         {
             "name": "Keyvan Akbary",
-            "homepage": "http://www.mybuilder.com"
+            "homepage": "https://www.mybuilder.com"
         }
     ],
     "require": {
-        "php": ">=5.6.0 || ^7.1",
+        "php": ">=5.6.0 || ^7.0",
         "symfony/process": "~2.2|~3.0|^4.0"
     },
     "suggest": {
