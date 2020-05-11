@@ -4,31 +4,19 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Job
 {
-    /**
-     * @var Cron
-     */
+    /** @var Cron */
     private $cron;
 
-    /**
-     * @var Time
-     */
+    /** @var Time */
     private $time;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $command;
 
-    /**
-     * @var Output
-     */
+    /** @var Output */
     private $output;
 
-    /**
-     * @param string $command
-     * @param Cron $cron
-     */
-    public function __construct($command, Cron $cron)
+    public function __construct(string $command, Cron $cron)
     {
         $this->cron = $cron;
         $this->time = new Time;
@@ -36,70 +24,40 @@ class Job
         $this->output = new Output;
     }
 
-    /**
-     * @param string $value
-     *
-     * @return $this
-     *
-     * @see Time::setMinute
-     */
-    public function setMinute($value)
+     /** @see Time::setMinute */
+    public function setMinute(string $value): self
     {
         $this->time->setMinute($value);
 
         return $this;
     }
 
-    /**
-     * @param string $value
-     *
-     * @return $this
-     *
-     * @see Time::setHour
-     */
-    public function setHour($value)
+    /** @see Time::setHour */
+    public function setHour(string $value): self
     {
         $this->time->setHour($value);
 
         return $this;
     }
 
-    /**
-     * @param string $value
-     *
-     * @return $this
-     *
-     * @see Time::setDayOfMonth
-     */
-    public function setDayOfMonth($value)
+    /** @see Time::setDayOfMonth */
+    public function setDayOfMonth(string $value): self
     {
         $this->time->setDayOfMonth($value);
 
         return $this;
     }
 
-    /**
-     * @param string $value
-     *
-     * @return $this
-     *
-     * @see Time::setMonth
-     */
-    public function setMonth($value)
+    /** @see Time::setMonth */
+    public function setMonth(string $value): self
     {
         $this->time->setMonth($value);
 
         return $this;
     }
 
-    /**
-     * @param string $value
-     *
-     * @return $this
-     *
-     * @see Time::setDayOfWeek
-     */
-    public function setDayOfWeek($value)
+    /** @see Time::setDayOfWeek */
+    public function setDayOfWeek(string$value): self
     {
         $this->time->setDayOfWeek($value);
 
@@ -109,90 +67,58 @@ class Job
     /**
      * Suppress the output of this command when executed
      *
-     * @return $this
-     *
      * @see Output::suppressOutput
      */
-    public function suppressOutput()
+    public function suppressOutput(): self
     {
         $this->output->suppressOutput();
 
         return $this;
     }
 
-    /**
-     * @param string $filePath
-     *
-     * @return $this
-     *
-     * @see Output::setStandardOutFile
-     */
-    public function setStandardOutFile($filePath)
+    /** @see Output::setStandardOutFile */
+    public function setStandardOutFile(string $filePath): self
     {
         $this->output->setStandardOutFile($filePath);
 
         return $this;
     }
 
-    /**
-     * @param string $filePath
-     *
-     * @return $this
-     *
-     * @see Output::appendStandardOutToFile
-     */
-    public function appendStandardOutToFile($filePath)
+    /** @see Output::appendStandardOutToFile */
+    public function appendStandardOutToFile(string $filePath): self
     {
         $this->output->appendStandardOutToFile($filePath);
 
         return $this;
     }
 
-    /**
-     * @param string $filePath
-     *
-     * @return $this
-     *
-     * @see Output::setStandardErrorFile
-     */
-    public function setStandardErrorFile($filePath)
+    /** @see Output::setStandardErrorFile */
+    public function setStandardErrorFile(string $filePath): self
     {
         $this->output->setStandardErrorFile($filePath);
 
         return $this;
     }
 
-    /**
-     * @param string $filePath
-     *
-     * @return $this
-     *
-     * @see Output::appendStandardErrorToFile
-     */
-    public function appendStandardErrorToFile($filePath)
+    /** @see Output::appendStandardErrorToFile */
+    public function appendStandardErrorToFile(string $filePath): self
     {
         $this->output->appendStandardErrorToFile($filePath);
 
         return $this;
     }
 
-    /**
-     * @return Cron
-     */
-    public function end()
+    public function end(): Cron
     {
         return $this->cron;
     }
 
-    /**
-     * @return string
-     */
-    public function format()
+    public function format(): string
     {
         return
             $this->time->format() .
             $this->command .
             $this->output->format() .
-            PHP_EOL;
+            \PHP_EOL;
     }
 }

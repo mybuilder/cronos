@@ -4,16 +4,7 @@ namespace MyBuilder\Cronos\Updater;
 
 interface FileSystem
 {
-    /**
-     * @param string $prefix
-     * @param string $content
-     *
-     * @return string
-     */
-    public function createTempFile($prefix, $content);
+    public function createTempFile(string $prefix, string $content): string;
 
-    /**
-     * @param string $filePath
-     */
-    public function removeFile($filePath);
+    public function removeFile(string $filePath): void;
 }

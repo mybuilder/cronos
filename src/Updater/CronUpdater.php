@@ -6,9 +6,10 @@ use MyBuilder\Cronos\Formatter\Cron;
 
 class CronUpdater
 {
-    const KEY_BEGIN = '# KEY %key%';
-    const KEY_END = '# END';
+    public const KEY_BEGIN = '# KEY %key%';
+    public const KEY_END = '# END';
 
+    /** @var CronManipulator */
     private $cronManipulator;
 
     public function __construct(CronManipulator $cronManipulator)
@@ -16,40 +17,29 @@ class CronUpdater
         $this->cronManipulator = $cronManipulator;
     }
 
-    /**
-     * @return CronUpdater
-     */
-    public static function createDefault()
+    public static function createDefault(): self
     {
         return new self(new CommandCronManipulator(new SymfonyProcessRunner, new StandardFileSystem));
     }
 
-    /**
-     * @param Cron $cron
-     */
-    public function replaceWith(Cron $cron)
+    public function replaceWith(Cron $cron): void
     {
         $this->cronManipulator->replace($cron->format());
     }
 
-    /**
-     * @param Cron $cron
-     * @param $key
-     *
-     * @throws \Exception
-     */
-    public function updateWith(Cron $cron, $key)
+    public function updateWith(Cron $cron, string $key): void
     {
         $this->cronManipulator->replace($this->updateContent($cron, $key));
     }
 
-    private function updateContent(Cron $cron, $key)
+    private function updateContent(Cron $cron, string $key): string
     {
         $content = $this->cronManipulator->getContent();
 
         $count = 0;
         $pattern = '/\r?\n' . $this->beginKey($key) . '.*?' . self::KEY_END . '/s';
-        $replacedContent = preg_replace($pattern, $this->wrapInKey($cron, $key), $content, -1, $count);
+        $replacedContent = \preg_replace($pattern, $this->wrapInKey($cron, $key), $content, -1, $count);
+
         if ($count > 0) {
             return $replacedContent;
         }
@@ -57,18 +47,18 @@ class CronUpdater
         return $this->appendContent($cron, $key, $content);
     }
 
-    private function wrapInKey(Cron $cron, $key)
+    private function wrapInKey(Cron $cron, string $key): string
     {
-        return PHP_EOL . $this->beginKey($key) . PHP_EOL . trim($cron->format()) . PHP_EOL . self::KEY_END;
+        return \PHP_EOL . $this->beginKey($key) . \PHP_EOL . \trim($cron->format()) . \PHP_EOL . self::KEY_END;
     }
 
-    private function beginKey($key)
+    private function beginKey(string $key): string
     {
-        return str_replace('%key%', $key, self::KEY_BEGIN);
+        return \str_replace('%key%', $key, self::KEY_BEGIN);
     }
 
-    private function appendContent(Cron $cron, $key, $content)
+    private function appendContent(Cron $cron, string $key, string $content): string
     {
-        return $content . $this->wrapInKey($cron, $key) . PHP_EOL;
+        return $content . $this->wrapInKey($cron, $key) . \PHP_EOL;
     }
 }

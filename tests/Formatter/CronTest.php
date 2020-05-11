@@ -1,12 +1,15 @@
 <?php
 
-namespace MyBuilder\Cronos\Formatter;
+namespace MyBuilder\Cronos\Tests\Formatter;
 
-class CronTest extends \PHPUnit_Framework_TestCase
+use MyBuilder\Cronos\Formatter\Cron;
+use PHPUnit\Framework\TestCase;
+
+class CronTest extends TestCase
 {
     private $cron;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->cron = new Cron;
     }
@@ -14,7 +17,7 @@ class CronTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldBuildConfiguration()
+    public function shouldBuildConfiguration(): void
     {
         $this->cron
             ->header()
@@ -59,7 +62,7 @@ CRON_TZ=Europe/Paris
 */5  *    *    *    sun  /bin/php command2 --env=prod > /dev/null 2> /dev/null
 
 EXP;
-        
+
         $this->assertEquals($expected, $this->cron->format());
     }
 }

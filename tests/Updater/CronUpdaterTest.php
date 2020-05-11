@@ -1,18 +1,20 @@
 <?php
 
-namespace MyBuilder\Cronos\Updater;
+namespace MyBuilder\Cronos\Tests\Updater;
 
-use Mockery as m;
 use MyBuilder\Cronos\Formatter\Cron;
+use MyBuilder\Cronos\Updater\CronManipulator;
+use MyBuilder\Cronos\Updater\CronUpdater;
+use PHPUnit\Framework\TestCase;
 
-class CronUpdaterTest extends \PHPUnit_Framework_TestCase
+class CronUpdaterTest extends TestCase
 {
     private $manipulatorStub;
     private $updater;
 
-    public function setUp()
+    protected function setUp(): void
     {
-        $this->manipulatorStub = new CronManipulatorStub;
+        $this->manipulatorStub = new CronManipulatorStub();
 
         $this->updater = new CronUpdater($this->manipulatorStub);
     }
@@ -20,17 +22,17 @@ class CronUpdaterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldReplaceContent()
+    public function shouldReplaceContent(): void
     {
-        $this->updater->replaceWith(new Cron);
+        $this->updater->replaceWith(new Cron());
 
-        $this->assertEquals(PHP_EOL, $this->manipulatorStub->contents);
+        $this->assertEquals(\PHP_EOL, $this->manipulatorStub->contents);
     }
 
     /**
      * @test
      */
-    public function shouldAppendKeyIfNotExist()
+    public function shouldAppendKeyIfNotExist(): void
     {
         $this->manipulatorStub->contents = <<<CRON
 headers
@@ -40,7 +42,7 @@ value 1
 no key
 CRON;
 
-        $cron = new Cron;
+        $cron = new Cron();
         $cron->header()->setPath('path')->end();
         $cron->comment('new content');
         $this->updater->updateWith($cron, 'key2');
@@ -65,7 +67,7 @@ CRON;
     /**
      * @test
      */
-    public function shouldReplaceKeyIfExist()
+    public function shouldReplaceKeyIfExist(): void
     {
         $this->manipulatorStub->contents = <<<CRON
 headers
@@ -82,7 +84,7 @@ foo
 
 CRON;
 
-        $cron = new Cron;
+        $cron = new Cron();
         $cron->comment('replace');
         $this->updater->updateWith($cron, 'key2');
 
@@ -107,14 +109,15 @@ CRON;
 
 class CronManipulatorStub implements CronManipulator
 {
+    /** @var string */
     public $contents;
 
-    public function replace($contents)
+    public function replace(string $contents): void
     {
         $this->contents = $contents;
     }
 
-    public function getContent()
+    public function getContent(): string
     {
         return $this->contents;
     }

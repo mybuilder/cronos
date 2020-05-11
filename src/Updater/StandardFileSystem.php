@@ -4,27 +4,21 @@ namespace MyBuilder\Cronos\Updater;
 
 class StandardFileSystem implements FileSystem
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function createTempFile($prefix, $content)
+    public function createTempFile(string $prefix, string $content): string
     {
         $filePath = $this->createTempName($prefix);
-        file_put_contents($filePath, $content);
+        \file_put_contents($filePath, $content);
 
         return $filePath;
     }
 
-    private function createTempName($prefix)
+    private function createTempName(string $prefix): string
     {
-        return tempnam(sys_get_temp_dir(), $prefix);
+        return \tempnam(\sys_get_temp_dir(), $prefix);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function removeFile($filePath)
+    public function removeFile(string $filePath): void
     {
-        unlink($filePath);
+        \unlink($filePath);
     }
 }

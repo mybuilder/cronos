@@ -4,49 +4,30 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Header
 {
-    /**
-     * @var Cron
-     */
+    /** @var Cron */
     private $cron;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $path;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $mailTo;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $home;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $shell;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $contentType;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $encoding;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $timezone;
 
-    /**
-     * @param Cron $cron
-     */
     public function __construct(Cron $cron)
     {
         $this->cron = $cron;
@@ -54,38 +35,23 @@ class Header
 
     /**
      * Works just like the shell PATH, but it does not inherit from your environment.
-     *
-     * @param string $path
-     *
-     * @return $this
      */
-    public function setPath($path)
+    public function setPath(string $path): self
     {
         $this->path = $path;
 
         return $this;
     }
 
-    /**
-     * @param string $home
-     *
-     * @return $this
-     */
-    public function setHome($home)
+    public function setHome(string $home): self
     {
         $this->home = $home;
 
         return $this;
     }
 
-    /**
-     * @param string $email
-     *
-     * @return $this
-     *
-     * @throws InvalidEmail if given email is invalid
-     */
-    public function setMailto($email)
+    /** @throws InvalidEmail if given email is invalid */
+    public function setMailto(string $email): self
     {
         $this->assertValidEmail($email);
         $this->mailTo = $email;
@@ -93,9 +59,9 @@ class Header
         return $this;
     }
 
-    private function assertValidEmail($email)
+    private function assertValidEmail($email): void
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (false === \filter_var($email, \FILTER_VALIDATE_EMAIL)) {
             throw new InvalidEmail($email);
         }
     }
@@ -104,12 +70,8 @@ class Header
      * Set the shell to be used when executing commands
      *
      * Default is /bin/sh but can also be changed to /bin/php
-     *
-     * @param string $shell
-     *
-     * @return $this
      */
-    public function setShell($shell)
+    public function setShell(string $shell): self
     {
         $this->shell = $shell;
 
@@ -118,12 +80,8 @@ class Header
 
     /**
      * Set the content-type to use for cron output emails.
-     *
-     * @param string $contentType
-     *
-     * @return $this
      */
-    public function setContentType($contentType)
+    public function setContentType(string $contentType): self
     {
         $this->contentType = $contentType;
 
@@ -132,36 +90,25 @@ class Header
 
     /**
      * Set the charset to use for cron output emails.
-     *
-     * @param string $encoding
-     *
-     * @return $this
      */
-    public function setContentTransferEncoding($encoding)
+    public function setContentTransferEncoding(string $encoding): self
     {
         $this->encoding = $encoding;
 
         return $this;
     }
 
-    /**
-     * @param $timezone
-     *
-     * @return $this
-     */
-    public function setTimezone($timezone)
+    public function setTimezone(string $timezone): self
     {
         $this->timezone = $timezone;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function format()
+    public function format(): string
     {
         $headers = '';
+
         if ($this->path) {
             $headers .= $this->createHeader('PATH', $this->path);
         }
@@ -187,15 +134,12 @@ class Header
         return $headers;
     }
 
-    private function createHeader($name, $value)
+    private function createHeader($name, $value): string
     {
-        return $name . '=' . $value . PHP_EOL;
+        return $name . '=' . $value . \PHP_EOL;
     }
 
-    /**
-     * @return Cron
-     */
-    public function end()
+    public function end(): Cron
     {
         return $this->cron;
     }

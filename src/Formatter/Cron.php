@@ -4,32 +4,20 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Cron
 {
-    /**
-     * @var Header
-     */
+    /** @var Header */
     private $header;
 
-    /**
-     * @var mixed[]
-     */
-    private $lines = array();
+    /** @var mixed[] */
+    private $lines = [];
 
-    /**
-     * @return Header
-     */
-    public function header()
+    public function header(): Header
     {
         $this->header = new Header($this);
 
         return $this->header;
     }
 
-    /**
-     * @param string $command
-     *
-     * @return Job
-     */
-    public function job($command)
+    public function job(string $command): Job
     {
         $line = new Job($command, $this);
         $this->lines[] = $line;
@@ -37,40 +25,30 @@ class Cron
         return $line;
     }
 
-    /**
-     * @param string $comment
-     *
-     * @return Cron
-     */
-    public function comment($comment)
+    public function comment(string $comment): Cron
     {
         $this->lines[] = new Comment($comment);
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function countLines()
+    public function countLines(): int
     {
         return count($this->lines);
     }
 
-    /**
-     * @return string
-     */
-    public function format()
+    public function format(): string
     {
         $lines = '';
+
         foreach ($this->lines as $line) {
-            $lines .= $line->format() . PHP_EOL;
+            $lines .= $line->format() . \PHP_EOL;
         }
 
-        return (($this->hasHeader()) ? $this->header->format() . PHP_EOL : '') . trim($lines) . PHP_EOL;
+        return (($this->hasHeader()) ? $this->header->format() . \PHP_EOL : '') . \trim($lines) . \PHP_EOL;
     }
 
-    public function hasHeader()
+    public function hasHeader(): bool
     {
         return $this->header !== null;
     }

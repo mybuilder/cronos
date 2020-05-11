@@ -4,26 +4,18 @@
 
 Easily configure cron through PHP.
 
-If you use Symfony 2, you could use our [cool bundle](https://github.com/mybuilder/cronos-bundle) in order to configure your app jobs through fancy annotations!
+If you use Symfony 3/4/5, you could use our [cool bundle](https://github.com/mybuilder/cronos-bundle) in order to configure your app jobs through fancy annotations!
 
 ## Setup and Configuration
-Add the following to your `composer.json` file
-```json
-{
-    "require": {
-        "mybuilder/cronos": "~1.0"
-    }
-}
-```
 
-Update the vendor libraries
+Require the library via composer:
 
-    curl -s http://getcomposer.org/installer | php
-    php composer.phar install
+    composer require mybuilder/cronos
 
 ## Usage
 
 ### Build Cron
+
 ```php
 <?php
 
@@ -84,13 +76,12 @@ $cronUpdater->replaceWith($cron);
 
 ## Troubleshooting
 
-* The current user must have a existing crontab file to use the updater, use crontab -e to create one.
+* The current user must have a existing crontab file to use the updater, use `crontab -e` to create one.
 * When a cron line is executed it is executed with the user that owns the crontab, but it will not execute any of the users default shell files so all paths etc need to be specified in the command called from the cron line.
-* Your crontab will not be executed if you do not have useable shell in /etc/passwd
-* If your jobs don't seem to be running check that the cron deamon is running, also check your username is in /etc/cron.allow and not in /etc/cron.deny.
-* Environmental substitutions do not work, you can not use things like $PATH, $HOME, or ~/sbin.
-* You can not use % in the command, if you need to use it escape the command in backticks.
-
+* Your crontab will not be executed if you do not have usable shell in `/etc/passwd`
+* If your jobs don't seem to be running, check the cron daemon is running, also check your username is in `/etc/cron.allow` and not in `/etc/cron.deny`.
+* Environmental substitutions do not work, you cannot use things like `$PATH`, `$HOME`, or `~/sbin`.
+* You cannot use `%` in the command, if you need to use it, escape the command in backticks.
 
 ---
 

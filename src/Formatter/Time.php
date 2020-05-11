@@ -23,40 +23,28 @@ namespace MyBuilder\Cronos\Formatter;
  */
 class Time
 {
-    const FORMAT = '%-4s %-4s %-4s %-4s %-4s ';
-    const WILDCARD_TIME = '*';
+    public const FORMAT = '%-4s %-4s %-4s %-4s %-4s ';
+    public const WILDCARD_TIME = '*';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $minute = self::WILDCARD_TIME;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $hour = self::WILDCARD_TIME;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $dayOfMonth = self::WILDCARD_TIME;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $month = self::WILDCARD_TIME;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $dayOfWeek = self::WILDCARD_TIME;
 
     /**
      * @param string $value 0-59 or a list or range
-     *
-     * @return $this
      */
-    public function setMinute($value)
+    public function setMinute(string $value): self
     {
         $this->minute = $this->parse($value);
 
@@ -65,10 +53,8 @@ class Time
 
     /**
      * @param string $value 0-23 or a list or range
-     *
-     * @return $this
      */
-    public function setHour($value)
+    public function setHour(string $value): self
     {
         $this->hour = $this->parse($value);
 
@@ -77,10 +63,8 @@ class Time
 
     /**
      * @param string $value 0-31 or a list or range
-     *
-     * @return $this
      */
-    public function setDayOfMonth($value)
+    public function setDayOfMonth(string $value): self
     {
         $this->dayOfMonth = $this->parse($value);
 
@@ -89,10 +73,8 @@ class Time
 
     /**
      * @param string $value 0-12 or a list or range
-     *
-     * @return $this
      */
-    public function setMonth($value)
+    public function setMonth(string $value): self
     {
         $this->month = $this->parse($value);
 
@@ -101,32 +83,22 @@ class Time
 
     /**
      * @param string $value 0-7 (0 or 7 is Sun, or use names) or a list or range
-     *
-     * @return $this
      */
-    public function setDayOfWeek($value)
+    public function setDayOfWeek(string $value): self
     {
         $this->dayOfWeek = $this->parse($value);
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function format()
+    public function format(): string
     {
-        return sprintf(self::FORMAT, $this->minute, $this->hour, $this->dayOfMonth, $this->month, $this->dayOfWeek);
+        return \sprintf(self::FORMAT, $this->minute, $this->hour, $this->dayOfMonth, $this->month, $this->dayOfWeek);
     }
 
-    /**
-     * @param string $value
-     *
-     * @return string
-     */
-    private function parse($value)
+    private function parse(string $value): string
     {
-        if ('/' === $value[0]) {
+        if (0 === \strpos($value, '/')) {
             return self::WILDCARD_TIME . $value;
         }
 

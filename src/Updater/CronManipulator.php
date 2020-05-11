@@ -4,13 +4,7 @@ namespace MyBuilder\Cronos\Updater;
 
 interface CronManipulator
 {
-    /*
-     * @param $contents string
-     */
-    public function replace($contents);
+    public function replace(string $contents): void;
 
-    /**
-     * @return string
-     */
-    public function getContent();
+    public function getContent(): string;
 }
