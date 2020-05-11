@@ -4,29 +4,21 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Comment
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $comment;
 
-    /**
-     * @param string $comment
-     */
-    public function __construct($comment)
+    public function __construct(string $comment)
     {
         $this->comment = $comment;
     }
 
-    /**
-     * @return string
-     */
-    public function format()
+    public function format(): string
     {
         return '#' . $this->removeLineBreaks($this->comment);
     }
 
-    private function removeLineBreaks($text)
+    private function removeLineBreaks($text): string
     {
-        return str_replace(array("\r", "\r\n", "\n", PHP_EOL), '', $text);
+        return \str_replace(["\r", "\r\n", "\n", \PHP_EOL], '', $text);
     }
 }

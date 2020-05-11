@@ -6,15 +6,12 @@ use Symfony\Component\Process\Process;
 
 class SymfonyProcessRunner implements ProcessRunner
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function run($command)
+    public function run(array $command): string
     {
         $process = new Process($command);
         $process->run();
 
-        if (!$process->isSuccessful()) {
+        if (false === $process->isSuccessful()) {
             throw new \RuntimeException($process->getErrorOutput());
         }
 

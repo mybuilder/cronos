@@ -4,10 +4,5 @@ namespace MyBuilder\Cronos\Updater;
 
 interface ProcessRunner
 {
-    /**
-     * @param string $command
-     *
-     * @return string
-     */
-    public function run($command);
+    public function run(array $command): string;
 }

@@ -4,49 +4,31 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Output
 {
-    const NO_FILE = '/dev/null';
+    public const NO_FILE = '/dev/null';
 
-    /**
-     * @var boolean
-     */
+    /** @var bool */
     private $noOutput = false;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $stdOutFile;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $stdOutAppend;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $stdErrFile;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $stdErrAppend;
 
-    /**
-     * @return $this
-     */
-    public function suppressOutput()
+    public function suppressOutput(): self
     {
         $this->noOutput = true;
 
         return $this;
     }
 
-    /**
-     * @param string $filePath
-     *
-     * @return $this
-     */
-    public function setStandardOutFile($filePath)
+    public function setStandardOutFile(string $filePath): self
     {
         $this->stdOutFile = $filePath;
         $this->stdOutAppend = false;
@@ -54,12 +36,8 @@ class Output
         return $this;
     }
 
-    /**
-     * @param string $filePath
-     *
-     * @return $this
-     */
-    public function appendStandardOutToFile($filePath) {
+    public function appendStandardOutToFile(string $filePath): self
+    {
         $this->stdOutFile = $filePath;
         $this->stdOutAppend = true;
 
@@ -67,11 +45,9 @@ class Output
     }
 
     /**
-     * @param string $filePath
      * @param bool $append Either append or rewrite log file
-     * @return $this
      */
-    public function setStandardErrorFile($filePath, $append = false)
+    public function setStandardErrorFile(string $filePath, bool $append = false): self
     {
         $this->stdErrFile = $filePath;
         $this->stdErrAppend = $append;
@@ -79,22 +55,15 @@ class Output
         return $this;
     }
 
-    /**
-     * @param string $filePath
-     *
-     * @return $this
-     */
-    public function appendStandardErrorToFile($filePath) {
+    public function appendStandardErrorToFile(string $filePath): self
+    {
         $this->stdErrFile = $filePath;
         $this->stdErrAppend = true;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function format()
+    public function format(): string
     {
         if ($this->noOutput) {
             return $this->redirectStandardOutTo(self::NO_FILE) . $this->redirectStandardErrorTo(self::NO_FILE);
@@ -103,24 +72,24 @@ class Output
         return $this->createOutput();
     }
 
-    private function redirectStandardOutTo($filePath)
+    private function redirectStandardOutTo($filePath): string
     {
         return $this->redirectOutputTo('', $this->stdOutAppend, $filePath);
     }
 
-    private function redirectOutputTo($out, $isAppend, $filePath)
+    private function redirectOutputTo($out, $isAppend, $filePath): string
     {
         $operator = $isAppend ? '>>' : '>';
 
-        return ' ' . $out . $operator . ' '. $filePath;
+        return ' ' . $out . $operator . ' ' . $filePath;
     }
 
-    private function redirectStandardErrorTo($filePath)
+    private function redirectStandardErrorTo($filePath): string
     {
         return $this->redirectOutputTo('2', $this->stdErrAppend, $filePath);
     }
 
-    private function createOutput()
+    private function createOutput(): string
     {
         $out = '';
 
