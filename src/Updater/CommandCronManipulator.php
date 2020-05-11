@@ -23,12 +23,12 @@ class CommandCronManipulator implements CronManipulator
     public function replace(string $contents): void
     {
         $filePath = $this->fileSystem->createTempFile('cron', $contents);
-        $this->processRunner->run($this->cronCommand . ' ' . $filePath);
+        $this->processRunner->run([$this->cronCommand, $filePath]);
         $this->fileSystem->removeFile($filePath);
     }
 
     public function getContent(): string
     {
-        return $this->processRunner->run($this->cronCommand . ' -l');
+        return $this->processRunner->run([$this->cronCommand, '-l']);
     }
 }
