@@ -1,7 +1,5 @@
 # Cronos
 
-[![Build Status](https://secure.travis-ci.org/mybuilder/cronos.svg?branch=master)](http://travis-ci.org/mybuilder/cronos) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d4fa742c-b95d-4416-8dce-7c7276bdc89b/big.png)](https://insight.sensiolabs.com/projects/d4fa742c-b95d-4416-8dce-7c7276bdc89b)
-
 Easily configure cron through PHP.
 
 If you use Symfony 3/4/5, you could use our [cool bundle](https://github.com/mybuilder/cronos-bundle) in order to configure your app jobs through fancy annotations!
