@@ -2,3 +2,4 @@ composer.lock
 composer.phar
 bin/
 vendor/
+.phpunit.result.cache
