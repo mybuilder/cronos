@@ -9,12 +9,12 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         php-versions: ['7.3', '7.4', '8.1']
-        symfony-versions: ['3.4.*', '4.4.*', '5.4.*']
+        symfony-versions: ['3.4.*', '4.4.*', '5.4.*', '6.0.*']
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }} with Symfony ${{ matrix.symfony-versions }}
     steps:
       # —— Setup Github actions 🐙 —————————————————————————————————————————————
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # https://github.com/shivammathur/setup-php (community)
       - name: Setup PHP, with composer and extensions
@@ -38,7 +38,7 @@ jobs:
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           # Use composer.json for key, if composer.lock is not committed.

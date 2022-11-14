@@ -16,14 +16,14 @@
     ],
     "require": {
         "php": ">=7.3",
-        "symfony/process": "^4.4|^5.0|^6.0"
+        "symfony/process": "^3.4|^4.4|^5.0|^6.0"
     },
     "suggest": {
         "symfony/filesystem": "Allows using Symfony Filesystem"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
-        "symfony/filesystem": "^4.4|^5.0|^6.0",
+        "symfony/filesystem": "^3.4|^4.4|^5.0|^6.0",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
