@@ -4,10 +4,9 @@ on: [push]
 
 jobs:
   run:
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        operating-system: [ubuntu-latest]
         include:
           - php-versions: 7.3
             symfony-versions: 3.4.*
@@ -24,7 +23,7 @@ jobs:
           - php-versions: 8.2
             symfony-versions: 6.2.*
 
-    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }} with Symfony ${{ matrix.symfony-versions }}
+    name: PHP ${{ matrix.php-versions }} Test with Symfony ${{ matrix.symfony-versions }}
     steps:
       # —— Setup Github actions 🐙 —————————————————————————————————————————————
       - name: Checkout
