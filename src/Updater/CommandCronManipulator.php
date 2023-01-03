@@ -4,21 +4,10 @@ namespace MyBuilder\Cronos\Updater;
 
 class CommandCronManipulator implements CronManipulator
 {
-    /** @var ProcessRunner */
-    private $processRunner;
-
-    /** @var FileSystem */
-    private $fileSystem;
-
-    /** @var string */
-    private $cronCommand;
-
-    public function __construct(ProcessRunner $processRunner, FileSystem $fileSystem, string $cronCommand = 'crontab')
-    {
-        $this->processRunner = $processRunner;
-        $this->fileSystem = $fileSystem;
-        $this->cronCommand = $cronCommand;
-    }
+    public function __construct(private ProcessRunner $processRunner,
+                                private FileSystem    $fileSystem,
+                                private string        $cronCommand = 'crontab')
+    {}
 
     public function replace(string $contents): void
     {

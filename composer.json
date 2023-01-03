@@ -15,14 +15,13 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
+        "php": ">=8.0.2",
         "symfony/process": "^4.4|^5.4|^6.0"
     },
     "suggest": {
         "symfony/filesystem": "Allows using Symfony Filesystem"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master",
         "symfony/filesystem": "^4.4|^5.4|^6.0",
         "phpunit/phpunit": "^9.5"
     },

@@ -9,13 +9,8 @@ class CronUpdater
     public const KEY_BEGIN = '# KEY %key%';
     public const KEY_END = '# END';
 
-    /** @var CronManipulator */
-    private $cronManipulator;
-
-    public function __construct(CronManipulator $cronManipulator)
-    {
-        $this->cronManipulator = $cronManipulator;
-    }
+    public function __construct(private CronManipulator $cronManipulator)
+    {}
 
     public static function createDefault(): self
     {

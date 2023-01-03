@@ -1,13 +1,13 @@
 <?php
 
-namespace MyBuilder\Cronos\Tests\Formatter;
+namespace Formatter;
 
 use MyBuilder\Cronos\Formatter\Cron;
 use PHPUnit\Framework\TestCase;
 
 class CronTest extends TestCase
 {
-    private $cron;
+    private Cron $cron;
 
     protected function setUp(): void
     {

@@ -4,13 +4,8 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Comment
 {
-    /** @var string */
-    private $comment;
-
-    public function __construct(string $comment)
-    {
-        $this->comment = $comment;
-    }
+    public function __construct(private string $comment)
+    {}
 
     public function format(): string
     {

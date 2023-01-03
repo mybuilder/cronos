@@ -5,21 +5,11 @@ namespace MyBuilder\Cronos\Formatter;
 class Output
 {
     public const NO_FILE = '/dev/null';
-
-    /** @var bool */
-    private $noOutput = false;
-
-    /** @var string */
-    private $stdOutFile;
-
-    /** @var bool */
-    private $stdOutAppend;
-
-    /** @var string */
-    private $stdErrFile;
-
-    /** @var bool */
-    private $stdErrAppend;
+    private bool $noOutput = false;
+    private string $stdOutFile;
+    private bool $stdOutAppend = false;
+    private string $stdErrFile;
+    private bool $stdErrAppend = false;
 
     public function suppressOutput(): self
     {
