@@ -8,7 +8,7 @@ class Output
     private bool $noOutput = false;
     private ?string $stdOutFile = null;
     private bool $stdOutAppend = false;
-    private string $stdErrFile;
+    private ?string $stdErrFile = null;
     private bool $stdErrAppend = false;
 
     public function suppressOutput(): self
