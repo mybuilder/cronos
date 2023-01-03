@@ -1,5 +1,5 @@
 composer.lock
 composer.phar
+.phpunit.result.cache
 bin/
 vendor/
-.phpunit.result.cache

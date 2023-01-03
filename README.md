@@ -2,7 +2,7 @@
 
 Easily configure cron through PHP.
 
-If you use Symfony 3/4/5, you could use our [cool bundle](https://github.com/mybuilder/cronos-bundle) in order to configure your app jobs through fancy annotations!
+If you use Symfony 3/4/5/6, you could use our [cool bundle](https://github.com/mybuilder/cronos-bundle) in order to configure your app jobs through fancy annotations!
 
 ## Setup and Configuration
 
