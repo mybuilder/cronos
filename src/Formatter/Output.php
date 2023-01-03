@@ -6,7 +6,7 @@ class Output
 {
     public const NO_FILE = '/dev/null';
     private bool $noOutput = false;
-    private string $stdOutFile;
+    private ?string $stdOutFile = null;
     private bool $stdOutAppend = false;
     private string $stdErrFile;
     private bool $stdErrAppend = false;
