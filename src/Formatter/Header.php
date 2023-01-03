@@ -4,7 +4,7 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Header
 {
-    private string $path;
+    private ?string $path = null;
     private ?string $mailTo = null;
     private ?string $home = null;
     private ?string $shell = null;
