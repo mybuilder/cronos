@@ -1,6 +1,6 @@
 <?php
 
-namespace Formatter;
+namespace MyBuilder\Cronos\Tests\Formatter;
 
 use MyBuilder\Cronos\Formatter\Cron;
 use PHPUnit\Framework\TestCase;

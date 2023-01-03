@@ -1,6 +1,6 @@
 <?php
 
-namespace Updater;
+namespace MyBuilder\Cronos\Tests\Updater;
 
 use MyBuilder\Cronos\Formatter\Cron;
 use MyBuilder\Cronos\Updater\CronManipulator;

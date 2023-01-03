@@ -28,6 +28,9 @@
     "autoload": {
         "psr-4": { "MyBuilder\\Cronos\\": "src" }
     },
+    "autoload-dev": {
+        "psr-4": { "MyBuilder\\Cronos\\Tests\\": "tests/" }
+    },
     "config": {
         "bin-dir": "bin"
     },
