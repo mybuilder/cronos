@@ -4,34 +4,16 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Header
 {
-    /** @var Cron */
-    private $cron;
+    private ?string $path = null;
+    private ?string $mailTo = null;
+    private ?string $home = null;
+    private ?string $shell = null;
+    private ?string $contentType = null;
+    private ?string $encoding = null;
+    private ?string $timezone = null;
 
-    /** @var string */
-    private $path;
-
-    /** @var string */
-    private $mailTo;
-
-    /** @var string */
-    private $home;
-
-    /** @var string */
-    private $shell;
-
-    /** @var string */
-    private $contentType;
-
-    /** @var string */
-    private $encoding;
-
-    /** @var string */
-    private $timezone;
-
-    public function __construct(Cron $cron)
-    {
-        $this->cron = $cron;
-    }
+    public function __construct(private Cron $cron)
+    {}
 
     /**
      * Works just like the shell PATH, but it does not inherit from your environment.

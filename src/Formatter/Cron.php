@@ -4,11 +4,10 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Cron
 {
-    /** @var Header */
-    private $header;
+    private ?Header $header = null;
 
     /** @var mixed[] */
-    private $lines = [];
+    private array $lines = [];
 
     public function header(): Header
     {

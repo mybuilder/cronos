@@ -9,8 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 class CronUpdaterTest extends TestCase
 {
-    private $manipulatorStub;
-    private $updater;
+    private CronManipulatorStub $manipulatorStub;
+    private CronUpdater $updater;
 
     protected function setUp(): void
     {
@@ -109,8 +109,7 @@ CRON;
 
 class CronManipulatorStub implements CronManipulator
 {
-    /** @var string */
-    public $contents;
+    public string $contents;
 
     public function replace(string $contents): void
     {

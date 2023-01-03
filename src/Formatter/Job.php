@@ -4,23 +4,12 @@ namespace MyBuilder\Cronos\Formatter;
 
 class Job
 {
-    /** @var Cron */
-    private $cron;
+    private Time $time;
+    private Output $output;
 
-    /** @var Time */
-    private $time;
-
-    /** @var string */
-    private $command;
-
-    /** @var Output */
-    private $output;
-
-    public function __construct(string $command, Cron $cron)
+    public function __construct(private string $command, private Cron $cron)
     {
-        $this->cron = $cron;
         $this->time = new Time;
-        $this->command = $command;
         $this->output = new Output;
     }
 

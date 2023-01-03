@@ -26,20 +26,11 @@ class Time
     public const FORMAT = '%-4s %-4s %-4s %-4s %-4s ';
     public const WILDCARD_TIME = '*';
 
-    /** @var string */
-    private $minute = self::WILDCARD_TIME;
-
-    /** @var string */
-    private $hour = self::WILDCARD_TIME;
-
-    /** @var string */
-    private $dayOfMonth = self::WILDCARD_TIME;
-
-    /** @var string */
-    private $month = self::WILDCARD_TIME;
-
-    /** @var string */
-    private $dayOfWeek = self::WILDCARD_TIME;
+    private string $minute = self::WILDCARD_TIME;
+    private string $hour = self::WILDCARD_TIME;
+    private string $dayOfMonth = self::WILDCARD_TIME;
+    private string $month = self::WILDCARD_TIME;
+    private string $dayOfWeek = self::WILDCARD_TIME;
 
     /**
      * @param string $value 0-59 or a list or range
@@ -98,7 +89,7 @@ class Time
 
     private function parse(string $value): string
     {
-        if (0 === \strpos($value, '/')) {
+        if (\str_starts_with($value, '/')) {
             return self::WILDCARD_TIME . $value;
         }
 

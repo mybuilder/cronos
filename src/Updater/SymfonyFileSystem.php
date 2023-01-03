@@ -6,8 +6,7 @@ use Symfony\Component\Filesystem\Filesystem as FileSystemHelper;
 
 class SymfonyFileSystem implements FileSystem
 {
-    /** @var FileSystemHelper; */
-    private $filesystem;
+    private FileSystemHelper $filesystem;
 
     public function __construct()
     {

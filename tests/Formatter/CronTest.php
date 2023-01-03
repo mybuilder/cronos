@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class CronTest extends TestCase
 {
-    private $cron;
+    private Cron $cron;
 
     protected function setUp(): void
     {
