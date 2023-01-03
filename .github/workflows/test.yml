@@ -15,6 +15,10 @@ jobs:
           - php-versions: 8.0
             symfony-versions: 6.0.*
           - php-versions: 8.1
+            symfony-versions: 4.4.*
+          - php-versions: 8.1
+            symfony-versions: 5.4.*
+          - php-versions: 8.1
             symfony-versions: 6.2.*
           - php-versions: 8.2
             symfony-versions: 6.2.*
