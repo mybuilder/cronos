@@ -105,6 +105,42 @@ CRON;
 
         $this->assertEquals($expectedCron, $this->manipulatorStub->contents);
     }
+
+    /**
+     * @test
+     */
+    public function shouldReplaceExactKeyOnly(): void
+    {
+        $this->manipulatorStub->contents = <<<CRON
+headers
+# KEY key1
+value 1
+# END
+no key
+# KEY key12
+value 12
+# END
+
+CRON;
+
+        $cron = new Cron();
+        $cron->comment('replace');
+        $this->updater->updateWith($cron, 'key1');
+
+        $expectedCron = <<<CRON
+headers
+# KEY key1
+#replace
+# END
+no key
+# KEY key12
+value 12
+# END
+
+CRON;
+
+        $this->assertEquals($expectedCron, $this->manipulatorStub->contents);
+    }
 }
 
 class CronManipulatorStub implements CronManipulator
