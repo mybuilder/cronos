@@ -32,7 +32,7 @@ class CronUpdater
         $content = $this->cronManipulator->getContent();
 
         $count = 0;
-        $pattern = '/\r?\n' . $this->beginKey($key) . '.*?' . self::KEY_END . '/s';
+        $pattern = '/\r?\n' . $this->beginKey($key) . '\r?\n.*?' . self::KEY_END . '/s';
         $replacedContent = \preg_replace($pattern, $this->wrapInKey($cron, $key), $content, -1, $count);
 
         if ($count > 0) {
